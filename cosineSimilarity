@@ -1,0 +1,16 @@
+function [ similarity ] = cosineSim( ratings )
+% Cosine ratings for the given input matrix
+
+n_row = size(ratings,1);
+norm_r = sqrt(sum(abs(ratings).^2,2)); % same as norm(ratings,2,'rows')
+similarity = zeros(n_row,n_row);
+
+for i = 1:n_row;
+    for j = i:n_row;
+        similarity(i,j) = dot(ratings(i,:), ratings(j,:)) / (norm_r(i) * norm_r(j));
+        similarity(j,i) = similarity(i,j);
+    end
+end
+
+end
+
