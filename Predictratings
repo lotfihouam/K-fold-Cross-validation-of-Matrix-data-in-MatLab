@@ -1,0 +1,13 @@
+function [ predratings ] = predRatings( ratings, similarity,kind)
+% Impute the rating based on the similarity and rating matrix
+% Specify the Kind as 'user' or 'item' based 
+
+if kind == 'user';
+    predratings = ((similarity*ratings)./sum(abs(similarity))');
+end
+
+if kind == 'item';
+    predratings = ((similarity*ratings)./sum(abs(similarity)));
+end
+
+end  %end of function
